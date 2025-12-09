@@ -1,0 +1,15 @@
+.main-content {
+    padding-top: 80px;
+    /* Space for fixed header */
+    padding-bottom: 2rem;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}

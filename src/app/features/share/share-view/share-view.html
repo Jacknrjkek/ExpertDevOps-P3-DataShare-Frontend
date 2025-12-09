@@ -1,0 +1,23 @@
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="brand-title">DataShare</div>
+        <h2>Télécharger un fichier</h2>
+
+        <div *ngIf="loading" class="spinner">Chargement...</div>
+
+        <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+        </div>
+
+        <div *ngIf="fileData" class="file-info">
+            <div class="file-icon">📄</div>
+            <h3>{{ fileData.fileName }}</h3>
+            <p class="meta">Taille: {{ fileData.size }} octets</p>
+            <p class="meta" *ngIf="fileData.expiration">Expire le: {{ fileData.expiration | date:'short' }}</p>
+
+            <button class="btn-primary mt-3" (click)="download()">
+                Télécharger le fichier
+            </button>
+        </div>
+    </div>
+</div>

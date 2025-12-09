@@ -1,0 +1,84 @@
+.upload-card {
+    /* Styles handled by global .auth-card or similar, but specific overrides here */
+    text-align: center;
+}
+
+.upload-trigger {
+    display: block;
+    cursor: pointer;
+    padding: 1rem;
+    border: 2px dashed transparent;
+    border-radius: 12px;
+    transition: all 0.3s;
+
+    &:hover {
+        background-color: #fafafa;
+        border-color: #F08E80;
+    }
+}
+
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    margin: 0 auto 1.5rem auto;
+    transition: transform 0.3s;
+}
+
+.upload-trigger:hover .icon-circle {
+    transform: scale(1.05);
+}
+
+.file-input {
+    display: none;
+}
+
+.cta-link {
+    color: #F08E80;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.selected-name {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.mt-3 {
+    margin-top: 1.5rem;
+}
+
+.progress {
+    height: 8px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.progress-bar {
+    background-color: #F08E80;
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.btn-sm {
+    background: transparent;
+    border: 1px solid #1a1a1a;
+    color: #1a1a1a;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 1rem;
+
+    &:hover {
+        background: #1a1a1a;
+        color: white;
+    }
+}

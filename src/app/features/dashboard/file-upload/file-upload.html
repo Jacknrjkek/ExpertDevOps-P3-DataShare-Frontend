@@ -1,0 +1,39 @@
+<div class="upload-card">
+
+    <div *ngIf="!currentFile">
+        <input type="file" id="fileInput" (change)="selectFile($event)" class="file-input" />
+        <label for="fileInput" class="upload-trigger">
+            <div class="icon-circle">
+                ☁️
+            </div>
+            <h3>Ajouter un fichier</h3>
+
+            <div class="file-label-text">
+                <span *ngIf="!selectedFiles" class="cta-link">Sélectionner un fichier</span>
+                <span *ngIf="selectedFiles" class="selected-name">{{ selectedFiles[0].name }}</span>
+            </div>
+        </label>
+
+        <button class="btn-primary mt-3" [disabled]="!selectedFiles" (click)="upload()">
+            Téléverser
+        </button>
+    </div>
+
+    <div *ngIf="currentFile" class="progress-info">
+        <h3>Envoi en cours...</h3>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" [style.width.%]="progress" [attr.aria-valuenow]="progress"
+                aria-valuemin="0" aria-valuemax="100">
+            </div>
+        </div>
+        <p>{{ progress }}%</p>
+    </div>
+
+    <div *ngIf="message" class="alert mt-3" [class.alert-success]="progress === 100"
+        [class.alert-danger]="progress === 0 && message">
+        {{ message }}
+        <div *ngIf="progress === 100" class="mt-2">
+            <button class="btn-sm" (click)="reset()">Nouveau fichier</button>
+        </div>
+    </div>
+</div>
