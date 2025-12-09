@@ -42,12 +42,12 @@ export class FileUpload {
             }
           },
           error: (err: any) => {
-            console.log(err);
+            console.error('Upload Error:', err);
             this.progress = 0;
             if (err.error && err.error.message) {
               this.message = err.error.message;
             } else {
-              this.message = 'Erreur lors du téléversement.';
+              this.message = 'Erreur lors du téléversement : ' + (err.message || 'Inconnue');
             }
             this.currentFile = undefined;
           },

@@ -32,7 +32,8 @@ export class Register {
         this.router.navigate(['/home']);
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        console.error('Register Error:', err);
+        this.errorMessage = err.error?.message || err.message || "Erreur d'inscription";
         this.isSignUpFailed = true;
       }
     });

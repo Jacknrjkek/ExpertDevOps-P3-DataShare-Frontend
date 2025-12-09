@@ -51,7 +51,8 @@ export class Login {
         this.router.navigate(['/home']);
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        console.error('Login Error:', err);
+        this.errorMessage = err.error?.message || err.message || 'Erreur de connexion';
         this.isLoginFailed = true;
       }
     });
