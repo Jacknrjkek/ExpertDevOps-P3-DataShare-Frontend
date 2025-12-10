@@ -1,71 +1,315 @@
-.upload-card {
-    /* Styles handled by global .auth-card or similar, but specific overrides here */
-    text-align: center;
-}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
 
-.upload-trigger {
-    display: block;
-    cursor: pointer;
-    padding: 1rem;
-    border: 2px dashed transparent;
-    border-radius: 12px;
-    transition: all 0.3s;
+    70% {
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+    }
 
-    &:hover {
-        background-color: #fafafa;
-        border-color: #F08E80;
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     }
 }
 
-.icon-circle {
-    width: 80px;
-    height: 80px;
-    background: #1a1a1a;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: white;
-    margin: 0 auto 1.5rem auto;
-    transition: transform 0.3s;
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.upload-trigger:hover .icon-circle {
-    transform: scale(1.05);
+.upload-card {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-trigger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    // Default State: Just the Button, No Background
+    background: transparent;
+    border: none;
+    padding: 0;
+
+    .icon-circle {
+        width: 100px;
+        height: 100px;
+        background: #1a1a1a; // Dark button
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: white;
+        transition: transform 0.3s;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+        // Add a pulse ring effect
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: rgba(26, 26, 26, 0.1);
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+    }
+
+    // Hide extra text in default state if desired, but user mockup had "Ajouter"
+    // Mockup 2: Only Icon. Mockup 5: "Tu veux partager..." above.
+    // So we'll hide the H3 inside the button for visual clarity in Default
+    h3,
+    .file-label-text {
+        display: none; // Hidden in default state
+    }
+
+    &:hover .icon-circle {
+        transform: scale(1.1);
+        background: #000;
+    }
+
+    // ACTIVE STATE: Modal Card
+    &.has-file {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        min-width: 400px;
+        max-width: 500px;
+
+        // Restore Text Visibility
+        h3,
+        .file-label-text {
+            display: block; // Show in card mode
+        }
+
+        // Reset Icon
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: #F3F4F6;
+            color: #1a1a1a;
+            box-shadow: none;
+
+            &::after {
+                animation: none;
+                display: none;
+            }
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+        }
+
+        &:hover {
+            transform: none; // Don't move the whole card on hover
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); // Keep shadow stable
+        }
+    }
+}
+
+// 2. Modal State: The Card
+.upload-modal {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    min-width: 420px;
+    max-width: 480px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    h3 {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        font-weight: 700;
+        color: #1a1a1a;
+    }
+}
+
+.file-summary-row {
+    background: #FAFAFA; // Very light grey
+    border: 1px solid #F3F4F6;
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    .file-icon-small {
+        font-size: 1.2rem;
+    }
+
+    .file-info-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .file-name {
+            font-weight: 600;
+            color: #1F2937;
+            font-size: 0.95rem;
+        }
+
+        .file-size {
+            font-size: 0.8rem;
+            color: #6B7280;
+        }
+    }
+}
+
+.btn-change {
+    background: transparent;
+    border: 1px solid #F89B85;
+    color: #EA580C;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+
+    &:hover {
+        background: #FFF7ED;
+    }
+}
+
+.form-group {
+    margin-bottom: 1rem;
+
+    label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #4B5563;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    background: white;
+    font-family: inherit;
+    font-size: 0.95rem;
+
+    &:focus {
+        outline: none;
+        border-color: #F08E80;
+        box-shadow: 0 0 0 3px rgba(240, 142, 128, 0.1);
+    }
+
+    &::placeholder {
+        color: #9CA3AF;
+    }
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 1rem;
+    background-color: #F89B85; // Salmon button
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    .icon {
+        font-size: 1.2rem;
+    }
+
+    &:hover:not([disabled]) {
+        background-color: #EA580C; // Darker orange
+    }
+
+    &:disabled {
+        background-color: #D1D5DB;
+        cursor: not-allowed;
+    }
 }
 
 .file-input {
     display: none;
 }
 
-.cta-link {
-    color: #F08E80;
-    font-weight: 600;
-    text-decoration: underline;
-}
-
-.selected-name {
-    font-weight: 600;
-    color: #1a1a1a;
-}
-
-.mt-3 {
-    margin-top: 1.5rem;
+// Progress Bar
+.progress-info {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    width: 400px;
 }
 
 .progress {
     height: 8px;
-    background-color: #f0f0f0;
+    background: #F3F4F6;
     border-radius: 4px;
     overflow: hidden;
     margin: 1rem 0;
 }
 
 .progress-bar {
-    background-color: #F08E80;
+    background: #F89B85;
     height: 100%;
-    transition: width 0.3s ease;
+    transition: width 0.3s;
+}
+
+.alert {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    text-align: center;
+    background: white; // Alert on white
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    &.alert-success {
+        background: #ECFDF5;
+        color: #065F46;
+    }
+
+    &.alert-danger {
+        background: #FEF2F2;
+        color: #B91C1C;
+    }
 }
 
 .btn-sm {

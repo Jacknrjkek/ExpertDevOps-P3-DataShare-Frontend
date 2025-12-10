@@ -2,21 +2,45 @@
 
     <div *ngIf="!currentFile">
         <input type="file" id="fileInput" (change)="selectFile($event)" class="file-input" />
-        <label for="fileInput" class="upload-trigger">
-            <div class="icon-circle">
-                ☁️
-            </div>
-            <h3>Ajouter un fichier</h3>
 
-            <div class="file-label-text">
-                <span *ngIf="!selectedFiles" class="cta-link">Sélectionner un fichier</span>
-                <span *ngIf="selectedFiles" class="selected-name">{{ selectedFiles[0].name }}</span>
+        <!-- TRIGGER BUTTON (Default State) -->
+        <label *ngIf="!selectedFiles || selectedFiles.length === 0" for="fileInput" class="upload-trigger">
+            <div class="icon-circle">
+                <span>☁️</span>
             </div>
         </label>
 
-        <button class="btn-primary mt-3" [disabled]="!selectedFiles" (click)="upload()">
-            Téléverser
-        </button>
+        <!-- MODAL CARD (Active State) -->
+        <div class="upload-modal" *ngIf="selectedFiles && selectedFiles.length > 0">
+            <h3>Ajouter un fichier</h3>
+
+            <!-- File Row -->
+            <div class="file-summary-row">
+                <div class="file-icon-small">📄</div>
+                <div class="file-info-text">
+                    <span class="file-name">{{ selectedFiles[0].name | slice:0:20 }}{{ selectedFiles[0].name.length > 20
+                        ? '...' : '' }}</span>
+                    <span class="file-size">{{ fileSize }}</span>
+                </div>
+                <button class="btn-change" (click)="changeFile()">Changer</button>
+            </div>
+
+
+
+            <!-- Expiration -->
+            <div class="form-group mt-3">
+                <label for="expiration">Expiration</label>
+                <select id="expiration" [(ngModel)]="expirationTime" class="form-select">
+                    <option [value]="1">Une journée</option>
+                    <option [value]="3">3 jours</option>
+                    <option [value]="7">7 jours</option>
+                </select>
+            </div>
+
+            <button class="btn-primary mt-4" (click)="upload()">
+                <span class="icon">☁️</span> Téléverser
+            </button>
+        </div>
     </div>
 
     <div *ngIf="currentFile" class="progress-info">
