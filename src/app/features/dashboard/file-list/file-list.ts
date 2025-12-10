@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FileService } from '../../../services/file.service';
 import { Router } from '@angular/router';
 
+import { StorageService } from '../../../services/storage.service';
+
 @Component({
   selector: 'app-file-list',
   standalone: true,
@@ -14,8 +16,10 @@ export class FileList implements OnInit {
   files: any[] = [];
   message = '';
   private fileService = inject(FileService);
+  private storageService = inject(StorageService);
   private router = inject(Router);
   private cd = inject(ChangeDetectorRef);
+
 
   filter: 'all' | 'active' | 'expired' = 'all';
 
@@ -74,9 +78,8 @@ export class FileList implements OnInit {
   openDeleteModal(id: number): void {
     this.fileToDeleteId = id;
     this.showDeleteModal = true;
+    this.cd.detectChanges();
   }
-
-
 
   confirmDelete(): void {
     console.log('Confirm Delete called. ID:', this.fileToDeleteId);

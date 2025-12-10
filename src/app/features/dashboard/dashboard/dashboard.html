@@ -1,7 +1,34 @@
-<app-header (logoutEvent)="logout()"></app-header>
+<div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            DataShare
+        </div>
 
-<div class="dashboard-container">
-    <div class="content-wrapper">
-        <app-file-list></app-file-list>
-    </div>
+        <nav class="nav-menu">
+            <div class="nav-item active">
+                Mes fichiers
+            </div>
+        </nav>
+
+        <div class="copyright">
+            Copyright DataShare® 2025
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="top-bar">
+            <button class="btn-dark" (click)="goToUpload()">
+                Ajouter des fichiers
+            </button>
+            <div class="logout-link" (click)="logout()">
+                Déconnexion <span class="icon">➔</span>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <app-file-list></app-file-list>
+        </div>
+    </main>
 </div>

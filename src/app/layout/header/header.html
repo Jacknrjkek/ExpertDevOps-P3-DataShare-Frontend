@@ -1,9 +1,9 @@
 <header>
-    <div class="logo">
-        <a routerLink="/home">DataShare</a>
-    </div>
-    <div class="user-actions">
+    <a routerLink="/home" class="logo">DataShare</a>
+
+    <div class="nav-actions">
+        <!-- Assuming these links are meant to be visible or conditioned? Keeping basic structure -->
         <a routerLink="/files" class="nav-link">Mon espace</a>
-        <button class="nav-btn" (click)="onLogout()">Déconnexion</button>
+        <button (click)="onLogout()">Déconnexion</button>
     </div>
 </header>
