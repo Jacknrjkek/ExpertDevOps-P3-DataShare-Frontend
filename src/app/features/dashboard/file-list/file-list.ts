@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FileService } from '../../../services/file.service';
 import { Router } from '@angular/router';
 
-import { StorageService } from '../../../services/storage.service';
+
 
 @Component({
   selector: 'app-file-list',
@@ -16,7 +16,7 @@ export class FileList implements OnInit {
   files: any[] = [];
   message = '';
   private fileService = inject(FileService);
-  private storageService = inject(StorageService);
+
   private router = inject(Router);
   private cd = inject(ChangeDetectorRef);
 
