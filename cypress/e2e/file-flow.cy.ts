@@ -25,8 +25,8 @@ describe('File Flow', () => {
         cy.get('button[type="submit"]').click();
 
         // Vérification : On est bien sur la Home (Espace connecté)
-        cy.url().should('include', '/home');
-        cy.contains('Mon espace').should('exist');
+        cy.url().should('include', '/files');
+        cy.contains('Mes fichiers').should('exist');
     });
 
     /**

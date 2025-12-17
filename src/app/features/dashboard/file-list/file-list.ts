@@ -144,7 +144,7 @@ export class FileList implements OnInit {
       // Feedback Visuel
       const button = event.target as HTMLButtonElement;
       const originalText = button.innerText;
-      button.innerText = '✅ Copié !';
+      button.innerText = 'Copié !';
       button.classList.add('copied');
 
       this.message = 'Lien copié dans le presse-papier !';

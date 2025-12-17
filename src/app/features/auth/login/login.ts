@@ -61,7 +61,7 @@ export class Login {
         this.roles = this.storageService.getUser().roles;
 
         // Redirection vers l'espace membre
-        this.router.navigate(['/home']);
+        this.router.navigate(['/files']);
       },
       error: err => {
         console.error('Login Error:', err);

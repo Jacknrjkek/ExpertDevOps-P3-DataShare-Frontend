@@ -32,13 +32,11 @@ describe('Auth Flow', () => {
         cy.get('button[type="submit"]').click();
 
         // 6. Vérification de la redirection post-connexion
-        cy.url().should('include', '/home');
+        cy.url().should('include', '/files');
 
         // 7. Accès au Tableau de bord (Espace membre)
-        cy.contains('Mon espace').click();
-
-        // 8. Vérification de l'affichage du Dashboard
-        cy.url().should('include', '/files');
-        cy.contains('Mes fichiers');
+        // 7. Accès au Tableau de bord (Espace membre)
+        // Déjà sur le dashboard suite à la redirection
+        cy.contains('Mes fichiers').should('exist');
     });
 });
