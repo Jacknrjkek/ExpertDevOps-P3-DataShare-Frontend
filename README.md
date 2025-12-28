@@ -3,6 +3,11 @@
 Interface utilisateur de l'application **DataShare**, développée en **Angular 21**.
 Ce projet fait partie de la solution logicielle de partage de fichiers sécurisée.
 
+![Angular](https://img.shields.io/badge/Angular-21.0.0-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![Jest](https://img.shields.io/badge/Jest-30.2.0-C21325?style=for-the-badge&logo=jest&logoColor=white)
+![Cypress](https://img.shields.io/badge/Cypress-15.7.1-17202C?style=for-the-badge&logo=cypress&logoColor=white)
+![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge)
+
 ## 🚀 Démarrage Rapide
 
 ### Prérequis
