@@ -1,0 +1,94 @@
+
+DevTools listening on ws://127.0.0.1:33979/devtools/browser/3b57c397-63dc-4bb8-b56c-3714ad5c4210
+
+================================================================================
+
+  (Run Starting)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Cypress:        15.7.1                                                                         │
+  │ Browser:        Electron 138 (headless)                                                        │
+  │ Node Version:   v22.21.1 (/home/nicolas/.nvm/versions/node/v22.21.1/bin/node)                  │
+  │ Specs:          1 found (full-features.cy.ts)                                                  │
+  │ Searched:       cypress/e2e/full-features.cy.ts                                                │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  full-features.cy.ts                                                             (1 of 1)
+
+
+  DataShare Full Flow
+    1) US07: Should upload file anonymously
+    2) US09: Should protect file with password and require it for download
+    3) US08: Should add tags to a file
+
+
+  0 passing (10s)
+  3 failing
+
+  1) DataShare Full Flow
+       US07: Should upload file anonymously:
+     AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Fichier téléversé avec succès' but never did.
+      at Context.eval (webpack://datashare-frontend/./cypress/e2e/full-features.cy.ts:32:53)
+
+  2) DataShare Full Flow
+       US09: Should protect file with password and require it for download:
+     AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Fichier téléversé avec succès' but never did.
+      at Context.eval (webpack://datashare-frontend/./cypress/e2e/full-features.cy.ts:59:53)
+
+  3) DataShare Full Flow
+       US08: Should add tags to a file:
+     ReferenceError: email is not defined
+      at Context.eval (webpack://datashare-frontend/./cypress/e2e/full-features.cy.ts:108:43)
+      at runnable.fn (http://localhost:4200/__cypress/runner/cypress_runner.js:146091:19)
+      at callFn (http://localhost:4200/__cypress/runner/cypress_runner.js:165185:21)
+      at Runnable.run (http://localhost:4200/__cypress/runner/cypress_runner.js:165172:7)
+      at <unknown> (http://localhost:4200/__cypress/runner/cypress_runner.js:171267:30)
+      at PassThroughHandlerContext.finallyHandler (http://localhost:4200/__cypress/runner/cypress_runner.js:4042:23)
+      at PassThroughHandlerContext.tryCatcher (http://localhost:4200/__cypress/runner/cypress_runner.js:1777:23)
+      at Promise._settlePromiseFromHandler (http://localhost:4200/__cypress/runner/cypress_runner.js:1489:31)
+      at Promise._settlePromise (http://localhost:4200/__cypress/runner/cypress_runner.js:1546:18)
+
+
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        3                                                                                │
+  │ Passing:      0                                                                                │
+  │ Failing:      3                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  3                                                                                │
+  │ Video:        false                                                                            │
+  │ Duration:     10 seconds                                                                       │
+  │ Spec Ran:     full-features.cy.ts                                                              │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Screenshots)
+
+  -  /home/nicolas/OC3/ExpertDevOps-P3-DataShare-Frontend/cypress/screenshots/full-fe     (1280x720)
+     atures.cy.ts/DataShare Full Flow -- US07 Should upload file anonymously (failed)               
+     .png                                                                                           
+  -  /home/nicolas/OC3/ExpertDevOps-P3-DataShare-Frontend/cypress/screenshots/full-fe     (1280x720)
+     atures.cy.ts/DataShare Full Flow -- US09 Should protect file with password and r               
+     equire it for download (failed).png                                                            
+  -  /home/nicolas/OC3/ExpertDevOps-P3-DataShare-Frontend/cypress/screenshots/full-fe     (1280x720)
+     atures.cy.ts/DataShare Full Flow -- US08 Should add tags to a file (failed).png                
+
+
+================================================================================
+
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped  
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ✖  full-features.cy.ts                      00:10        3        -        3        -        - │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ✖  1 of 1 failed (100%)                     00:10        3        -        3        -        -  
+

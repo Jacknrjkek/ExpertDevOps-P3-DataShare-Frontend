@@ -5,8 +5,8 @@
 describe('Auth Flow', () => {
     // Génération d'email unique pour éviter les conflits
     const uniqueId = Date.now();
-    const email = `cypress${uniqueId}@test.com`;
-    const password = 'password123';
+    const email = `user_${Date.now()}@test.com`;
+    const password = Cypress.env("TEST_USER_PASSWORD");
 
     it('should register and login successfully', () => {
         // 1. Visite de la page de Login et navigation vers Inscription

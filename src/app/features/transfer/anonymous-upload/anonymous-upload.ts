@@ -26,6 +26,10 @@ export class AnonymousUploadComponent {
     expirationTime = 1; // Par défaut: "Une journée" (1 jour)
     shareToken: string | null = null; // Token à afficher après upload
 
+    // US09 - Password Protection
+    enablePassword = false;
+    password = '';
+
     private fileService = inject(FileService);
     private storageService = inject(StorageService); // Inject StorageService
     private router = inject(Router);
@@ -56,6 +60,8 @@ export class AnonymousUploadComponent {
         this.message = '';
         this.progress = 0;
         this.shareToken = null;
+        this.password = '';
+        this.enablePassword = false;
     }
 
     upload(): void {
@@ -67,11 +73,18 @@ export class AnonymousUploadComponent {
 
             if (file) {
                 this.currentFile = file;
+                const pwd = this.enablePassword && this.password ? this.password : undefined;
+
+                if (this.enablePassword && (!this.password || this.password.length < 6)) {
+                    this.message = 'Le mot de passe doit contenir au moins 6 caractères.';
+                    this.currentFile = undefined;
+                    return;
+                }
 
                 // Conditional Upload Logic
                 const uploadObservable = this.storageService.isLoggedIn()
-                    ? this.fileService.upload(this.currentFile, this.expirationTime)
-                    : this.fileService.uploadAnonymous(this.currentFile, this.expirationTime);
+                    ? this.fileService.upload(this.currentFile, this.expirationTime, pwd)
+                    : this.fileService.uploadAnonymous(this.currentFile, this.expirationTime, pwd);
 
                 uploadObservable.subscribe({
                     next: (event: any) => {

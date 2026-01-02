@@ -21,13 +21,17 @@ export class FileService {
      *
      * @param file L'objet File natif JS
      * @param expirationTime Temps d'expiration optionnel (en heures ?)
+     * @param password Mot de passe optionnel
      */
-    upload(file: File, expirationTime?: number): Observable<HttpEvent<any>> {
+    upload(file: File, expirationTime?: number, password?: string): Observable<HttpEvent<any>> {
         const formData: FormData = new FormData();
 
         formData.append('file', file);
         if (expirationTime) {
             formData.append('expirationTime', expirationTime.toString());
+        }
+        if (password) {
+            formData.append('password', password);
         }
 
         const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
@@ -41,12 +45,15 @@ export class FileService {
     /**
      * Téléverse un fichier anonymement (US07).
      */
-    uploadAnonymous(file: File, expirationTime?: number): Observable<HttpEvent<any>> {
+    uploadAnonymous(file: File, expirationTime?: number, password?: string): Observable<HttpEvent<any>> {
         const formData: FormData = new FormData();
 
         formData.append('file', file);
         if (expirationTime) {
             formData.append('expirationTime', expirationTime.toString());
+        }
+        if (password) {
+            formData.append('password', password);
         }
 
         const req = new HttpRequest('POST', `${this.baseUrl}/upload/anonymous`, formData, {

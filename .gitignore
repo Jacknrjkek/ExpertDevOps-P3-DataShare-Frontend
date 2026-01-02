@@ -52,3 +52,5 @@ Thumbs.db
 
 # Dossiers de configuration de l'IDE (Facultatif, mais recommandé pour la propreté)
 .vscode/
+# Cypress Secrets
+cypress.env.json

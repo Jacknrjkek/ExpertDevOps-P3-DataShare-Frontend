@@ -24,6 +24,10 @@ export class FileUpload {
   message = '';
   expirationTime = 1; // Par défaut: "Une journée" (1 jour)
 
+  // US09 - Password Protection
+  enablePassword = false;
+  password = '';
+
   private fileService = inject(FileService);
   private router = inject(Router);
   private cd = inject(ChangeDetectorRef); // Nécessaire pour forcer le rafraîchissement UI lors de l'upload
@@ -60,6 +64,8 @@ export class FileUpload {
     console.log('Selected files:', this.selectedFiles);
     this.message = '';
     this.progress = 0;
+    this.password = '';
+    this.enablePassword = false;
   }
 
   /**
@@ -78,8 +84,16 @@ export class FileUpload {
         console.log('Processing file:', file.name);
         this.currentFile = file;
 
+        const pwd = this.enablePassword && this.password ? this.password : undefined;
+
+        if (this.enablePassword && (!this.password || this.password.length < 6)) {
+          this.message = 'Le mot de passe doit contenir au moins 6 caractères.';
+          this.currentFile = undefined;
+          return;
+        }
+
         // Appel au service
-        this.fileService.upload(this.currentFile, this.expirationTime).subscribe({
+        this.fileService.upload(this.currentFile, this.expirationTime, pwd).subscribe({
           next: (event: any) => {
             console.log('Upload event:', event);
 

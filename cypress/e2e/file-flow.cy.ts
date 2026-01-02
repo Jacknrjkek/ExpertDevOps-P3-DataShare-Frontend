@@ -6,7 +6,7 @@
 describe('File Flow', () => {
     const uniqueId = Date.now();
     const email = `cypress_file_${uniqueId}@test.com`;
-    const password = 'password123';
+    const password = Cypress.env("TEST_USER_PASSWORD");
     const fileName = 'test-file.txt';
 
     // Préparation : Inscription et Connexion avant chaque test

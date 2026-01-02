@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Register } from './register';
 import { AuthService } from '../../../services/auth.service';
+import { By } from '@angular/platform-browser';
+import { TEST_CONSTANTS } from '../../../shared/test-constants';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
@@ -47,7 +49,7 @@ describe('Register Component', () => {
      */
     it('should call authService.register and navigate on success', () => {
         const email = 'test@test.com';
-        const password = 'password123';
+        const password = TEST_CONSTANTS.USER_PASSWORD;
         component.form.email = email;
         component.form.password = password;
 
@@ -65,8 +67,8 @@ describe('Register Component', () => {
      * Doit parser l'objet d'erreur Spring Boot pour afficher un message lisible.
      */
     it('should display error message on registration failure (validation error)', () => {
-        const email = 'invalid-email';
-        const password = '123';
+        const email = 'test@test.com';
+        const password = TEST_CONSTANTS.SHORT_PASSWORD;
         component.form = { email, password };
 
         // Mock d'une réponse d'erreur de validation Backend

@@ -42,6 +42,19 @@
                     </select>
                 </div>
 
+                <!-- US09 - Password Protection -->
+                <div class="form-group mt-3" style="text-align: left;">
+                    <label>
+                        <input type="checkbox" [(ngModel)]="enablePassword">
+                        Protéger par mot de passe
+                    </label>
+                </div>
+
+                <div class="form-group mt-2" *ngIf="enablePassword">
+                    <input type="password" class="form-control" placeholder="Mot de passe (min 6 car.)"
+                        [(ngModel)]="password">
+                </div>
+
                 <button class="btn-primary mt-4" (click)="upload()">
                     <span class="icon">☁️</span> Téléverser
                 </button>

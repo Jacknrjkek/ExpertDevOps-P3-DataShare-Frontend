@@ -28,4 +28,15 @@ export class ShareService {
     getDownloadUrl(token: string): string {
         return `${this.apiUrl}/download/${token}`;
     }
+
+    /**
+     * Télécharge un fichier protégé par mot de passe.
+     * @param token Le token UUID
+     * @param password Le mot de passe
+     */
+    downloadProtected(token: string, password: string): Observable<Blob> {
+        return this.http.post(`${this.apiUrl}/download/${token}`, { password }, {
+            responseType: 'blob'
+        });
+    }
 }

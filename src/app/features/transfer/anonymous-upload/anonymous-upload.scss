@@ -208,11 +208,27 @@
   margin-bottom: 1rem;
 
   label {
-    display: block;
+    display: flex;
+    /* Use flexbox for alignment */
+    align-items: center;
+    /* Vertically center items */
+    gap: 0.5rem;
+    /* Add space between checkbox and text */
     font-weight: 600;
     font-size: 0.9rem;
     color: #4B5563;
     margin-bottom: 0.5rem;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+      cursor: pointer;
+      width: 1.1em;
+      height: 1.1em;
+      margin: 0;
+      /* Reset default margins */
+      accent-color: #F89B85;
+      /* Match theme color */
+    }
   }
 }
 
@@ -336,19 +352,20 @@
   max-width: 500px;
   margin: 0 auto;
 }
-.btn-dark {
-    background-color: #2D2D2D;
-    color: white;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    border: none;
-    font-weight: 500;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
 
-    &:hover {
-        background-color: #1a1a1a;
-        transform: translateY(-1px);
-    }
+.btn-dark {
+  background-color: #2D2D2D;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+
+  &:hover {
+    background-color: #1a1a1a;
+    transform: translateY(-1px);
+  }
 }

@@ -46,6 +46,7 @@ describe('StorageService', () => {
         expect(service.isLoggedIn()).toBeFalsy();
 
         service.saveUser({ id: 1 });
+        service.saveToken('token');
         expect(service.isLoggedIn()).toBeTruthy();
     });
 

@@ -208,11 +208,23 @@
     margin-bottom: 1rem;
 
     label {
-        display: block;
+        display: flex;
+        /* Flex alignment */
+        align-items: center;
+        gap: 0.5rem;
         font-weight: 600;
         font-size: 0.9rem;
         color: #4B5563;
         margin-bottom: 0.5rem;
+        cursor: pointer;
+
+        input[type="checkbox"] {
+            cursor: pointer;
+            width: 1.1em;
+            height: 1.1em;
+            margin: 0;
+            accent-color: #F89B85;
+        }
     }
 }
 
