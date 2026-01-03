@@ -43,13 +43,19 @@ npm run test:coverage
 
 ### Tests E2E (Cypress)
 Lancez les tests de bout en bout (nécessite le Backend lancé) :
+
+**Mode Console (CLI) - Recommandé :**
 ```bash
-npx cypress run
+npx cypress run --spec "cypress/e2e/user_journey.cy.ts"
 ```
-Ou l'interface interactive :
+
+**Mode Interactif (UI) :**
 ```bash
 npx cypress open
 ```
+*Sélectionnez "E2E Testing" puis `user_journey.cy.ts`.*
+
+> **Note :** Les tests sont traduits en Français et couvrent 8 scénarios complets (Authentification, Upload Anonyme/Connecté, Téléchargement Protégé, etc.).
 
 ---
 
