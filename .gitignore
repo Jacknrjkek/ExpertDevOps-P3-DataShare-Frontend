@@ -54,3 +54,7 @@ Thumbs.db
 .vscode/
 # Cypress Secrets
 cypress.env.json
+
+# Custom Logs
+*.log
+cypress_output.txt
