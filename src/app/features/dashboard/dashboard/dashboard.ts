@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileUpload } from '../file-upload/file-upload';
 import { FileList } from '../file-list/file-list';
@@ -18,10 +18,16 @@ import { Router } from '@angular/router';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
-export class Dashboard {
+export class Dashboard implements OnInit {
   private storageService = inject(StorageService);
   private authService = inject(AuthService);
   private router = inject(Router);
+
+  ngOnInit(): void {
+    if (!this.storageService.isLoggedIn()) {
+      this.router.navigate(['/home']);
+    }
+  }
 
   /**
    * Déconnecte l'utilisateur et redirige vers le login.
